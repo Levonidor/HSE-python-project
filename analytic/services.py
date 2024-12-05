@@ -17,11 +17,15 @@ def count_total_sales(df: pd.DataFrame) -> pd.DataFrame:
         df.at[i,ColNames.TOTAL_SALES] = total_sales[df.loc[i][ColNames.NAME]]
     return df
 
+
+
 def game_platform_sales_percentage(df: pd.DataFrame, game: str, platform:str) -> list[float,float]:
     if platform in platforms_present:
         for i in range(len(df)):
             if df.loc[i][ColNames.PLATFORM] == platform and df.loc[i][ColNames.NAME] == game:
                 return [round(float(df.loc[i][ColNames.GLOBAL_SALES])/float(df.loc[i][ColNames.TOTAL_SALES])*100,2), float(df.loc[i][ColNames.GLOBAL_SALES])]
+
+
 
 def platform_sales(df: pd.DataFrame) -> pd.DataFrame:
     platform_amount = dict()
@@ -37,3 +41,15 @@ def platform_sales(df: pd.DataFrame) -> pd.DataFrame:
     for name,sales in platform_amount.items():
         platform_sales.loc[len(platform_sales)] = [name,round(sales,3),round(sales/all_sales_amount*100,4)]
     return platform_sales
+
+def sales_percentage(df: pd.DataFrame) -> pd.DataFrame:
+    df[ColNames.NA_PERCENT] = None
+    df[ColNames.EU_PERCENT] = None
+    df[ColNames.JP_PERCENT] = None
+    df[ColNames.OTHER_PERCENT] = None
+    for i in range(len(df)):
+        df.at[i,ColNames.NA_PERCENT] = round(float(df.loc[i][ColNames.NA_SALES])/float(df.loc[i][ColNames.GLOBAL_SALES])*100,3)
+        df.at[i,ColNames.EU_PERCENT] = round(float(df.loc[i][ColNames.EU_SALES])/float(df.loc[i][ColNames.GLOBAL_SALES])*100,3)
+        df.at[i,ColNames.JP_PERCENT] = round(float(df.loc[i][ColNames.JP_SALES])/float(df.loc[i][ColNames.GLOBAL_SALES])*100,3)
+        df.at[i,ColNames.OTHER_PERCENT] = round(float(df.loc[i][ColNames.OTHER_SALES])/float(df.loc[i][ColNames.GLOBAL_SALES])*100,3)
+    return df

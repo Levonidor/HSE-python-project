@@ -16,6 +16,11 @@ class ColNames(StrEnum):
     TOTAL_SALES = "Total_Sales"
     PERCENT = 'Percent_of_total_sales'
     SALES = 'Game_Sales'
+    NA_PERCENT = 'NA_Percent'
+    EU_PERCENT = 'EU_Percent'
+    JP_PERCENT = 'JP_Percent'
+    OTHER_PERCENT = 'Other_Percent'
+
 
 
 
@@ -52,3 +57,6 @@ platforms_present = [
     "SNES",
     "PC",
 ]
+
+
+
