@@ -14,14 +14,30 @@ class ColNames(StrEnum):
     OTHER_SALES = "Other_Sales"
     GLOBAL_SALES = "Global_Sales"
     TOTAL_SALES = "Total_Sales"
-    PERCENT = 'Percent_of_total_sales'
-    SALES = 'Game_Sales'
-    NA_PERCENT = 'NA_Percent'
-    EU_PERCENT = 'EU_Percent'
-    JP_PERCENT = 'JP_Percent'
-    OTHER_PERCENT = 'Other_Percent'
+    PERCENT = "Percent_of_total_sales"
+    SALES = "Game_Sales"
+    NA_PERCENT = "NA_Percent"
+    EU_PERCENT = "EU_Percent"
+    JP_PERCENT = "JP_Percent"
+    OTHER_PERCENT = "Other_Percent"
+    PERCENTAGE = "Percentage"
+    TOTAL_COUNT = "Total_Count"
 
 
+genres_present = [
+    "Sports",
+    "Platform",
+    "Racing",
+    "Role-Playing",
+    "Puzzle",
+    "Misc",
+    "Shooter",
+    "Simulation",
+    "Action",
+    "Fighting",
+    "Adventure",
+    "Strategy",
+]
 
 
 platforms_present = [
@@ -57,6 +73,3 @@ platforms_present = [
     "SNES",
     "PC",
 ]
-
-
-

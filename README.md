@@ -1,3 +1,3 @@
 # HSE-python-project
 
-Hypothesis: "In Japan, console game sales are higher than console game sales in the rest of the world, as the share of PC game purchases is much smaller than in the rest of the world."
+Hypothesis: "Games with global sales over 10 million are more likely to belong to the "Action" or "Shooter" genres than any other genres"
