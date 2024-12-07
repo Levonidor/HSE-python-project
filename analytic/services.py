@@ -17,6 +17,24 @@ def count_total_sales(df: pd.DataFrame) -> pd.DataFrame:
         df.at[i,ColNames.TOTAL_SALES] = total_sales[df.loc[i][ColNames.NAME]]
     return df
 
+def create_total_sales_dataframe(df: pd.DataFrame) -> pd.DataFrame:
+    total_sales = dict()
+    for i in range(len(df)):
+        if df.loc[i][ColNames.NAME] in total_sales:
+            total_sales[df.loc[i][ColNames.NAME]] += float(df.loc[i][ColNames.GLOBAL_SALES])
+        else:
+            total_sales[df.loc[i][ColNames.NAME]] = float(df.loc[i][ColNames.GLOBAL_SALES])
+    dataframe = pd.DataFrame(columns=[ColNames.NAME,ColNames.PUBLISHER,ColNames.TOTAL_SALES])
+    i = 0
+    for name,sales in total_sales.items():
+        total_sales[name] = round(float(sales),5)
+        dataframe.at[i,ColNames.NAME] = name
+        dataframe.at[i,ColNames.TOTAL_SALES] = sales
+        dataframe.at[i,ColNames.PUBLISHER] = df.loc[df[ColNames.NAME] == name].iloc[0][ColNames.PUBLISHER]
+        dataframe.at[i,ColNames.TOTAL_SALES] = sales
+        i += 1
+    return dataframe
+
 
 
 def game_platform_sales_percentage(df: pd.DataFrame, game: str, platform:str) -> list[float,float]:
