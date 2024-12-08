@@ -127,3 +127,24 @@ def spd_dataframes(df: pd.DataFrame) -> pd.DataFrame:
     spd_second_dataframe = spd_dataframe.groupby([ColNames.GENRE,ColNames.YEAR], as_index=False)[ColNames.SALES].sum()
     return [spd_first_dataframe,spd_second_dataframe]
 
+@st.cache_data()
+def spd_year_dataframe(df: pd.DataFrame) -> pd.DataFrame:
+    return df.groupby([ColNames.YEAR],as_index=False)[ColNames.GLOBAL_SALES].sum()
+
+@st.cache_data()
+def spd_region_sales_dataframe(df: pd.DataFrame,platform: str) -> pd.DataFrame:
+    df = df.groupby(ColNames.PLATFORM)[[ColNames.NA_PERCENT,ColNames.EU_PERCENT, ColNames.JP_PERCENT,ColNames.OTHER_PERCENT]].mean().reset_index()
+    df = df[df[ColNames.PLATFORM] == platform]
+    sales_summary = df[[ColNames.NA_PERCENT,ColNames.EU_PERCENT,ColNames.JP_PERCENT,ColNames.OTHER_PERCENT]].sum()
+    spd_region = pd.DataFrame({
+        ColNames.REGION: [ColNames.NA_PERCENT,ColNames.EU_PERCENT,ColNames.JP_PERCENT,ColNames.OTHER_PERCENT],
+        ColNames.SALES: [sales_summary[ColNames.NA_PERCENT],sales_summary[ColNames.EU_PERCENT],sales_summary[ColNames.JP_PERCENT],sales_summary[ColNames.OTHER_PERCENT]]
+    })
+    return spd_region
+
+@st.cache_data()
+def hypothesis(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.groupby([ColNames.NAME,ColNames.GENRE],as_index=False)[ColNames.GLOBAL_SALES].sum()
+    df = df[df[ColNames.GLOBAL_SALES] > 10]
+    hypothesis_dataframe = df.groupby(ColNames.GENRE).size().reset_index(name=ColNames.TOTAL_COUNT)
+    return hypothesis_dataframe
