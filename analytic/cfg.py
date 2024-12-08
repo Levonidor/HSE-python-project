@@ -22,7 +22,7 @@ class ColNames(StrEnum):
     OTHER_PERCENT = "Other_Percent"
     PERCENTAGE = "Percentage"
     TOTAL_COUNT = "Total_Count"
-    REGION = 'Region'
+    REGION = "Region"
 
 
 genres_present = [
