@@ -21,7 +21,7 @@ st.write("Let's modify it to understand what percentage of the game's sales were
 
 if st.checkbox('Show **modificated dataframe for overview**'):
     st.write(sales_percentage_dataframe)
-st.write('Now we will look at the various data and analyze it.')
+st.write('We have added data on the percentage of game sales in different regions. Now we will look at the various data and analyze it.')
 spd_dataframes_ = spd_dataframes(original_dataframe)
 
 spd_presentation_fig = px.bar(
@@ -55,6 +55,7 @@ spd_presentation_fig = px.line(
     spd_dataframes_[1][spd_dataframes_[1][ColNames.GENRE] == genre],
     x=ColNames.YEAR,
     y=ColNames.SALES,
+    title=f'Sales of {genre} per year',
 )
 st.plotly_chart(spd_presentation_fig)
 if st.checkbox('Show **selected genre dataframe**'):
@@ -148,5 +149,5 @@ hypothesis_presentation_fig = px.pie(
 )
 st.plotly_chart(hypothesis_presentation_fig)
 if st.checkbox('Show **dataframe with Genre and its number of games with global sales over 10 million**'):
-    st.write(st.write(hypothesis(main_dataframe)))
+    st.write((hypothesis(main_dataframe)))
 st.write('**The hypothesis is partially correct:** "Action" and "Shooter" are the most popular genres among over 10 million global sales games, but their dominance is not overwhelming compared to other genres: 34.4% of "Action"+"Shooter" againts 65.6% of other genres. Other genres, like "Role-Playing," "Sports," and "Platform," also contribute substantially to the list of games with over 10 million global sales.')

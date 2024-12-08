@@ -1,6 +1,5 @@
 from .cfg import ColNames,platforms_present
 import pandas as pd
-import numpy as np
 import streamlit as st
 
 @st.cache_data()
